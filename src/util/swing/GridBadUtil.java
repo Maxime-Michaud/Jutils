@@ -8,6 +8,7 @@ package util.swing;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -29,7 +30,7 @@ public class GridBadUtil
         for (int i = 0; i < comp.length; ++i)
         {
             if (comp[i] == null)
-                comp[i] = new JLabel(" ");
+                comp[i] = Box.createHorizontalGlue();
 
             GridBagConstraints c = new GridBagConstraints();
 
@@ -42,13 +43,9 @@ public class GridBadUtil
             c.insets.top = 5;
             c.insets.left = 2;
             
-            if (!(comp[i] instanceof JButton))
-                c.fill = GridBagConstraints.HORIZONTAL;
-            else
-                c.fill = GridBagConstraints.NONE;
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.weightx = 1;
             
-            c.weightx = 1.0 / comp.length;
-
             container.add(comp[i], c);
         }
     }
